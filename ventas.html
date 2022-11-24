@@ -47,13 +47,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <select class="form-select" aria-label="Default select example" id="selectUsuarios">
+        <select class="form-select" aria-label="Default select example" id="selectVentas">
           <option selected>Selecionar un Venta</option>
         </select>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" id="deleteVenta">Save changes</button>
       </div>
     </div>
   </div>
@@ -87,12 +87,6 @@
             <a href="./proveedores.html">
               <i class="tim-icons icon-pin"></i>
               <p>Proveedores</p>
-            </a>
-          </li>
-          <li>
-            <a href="./notifications.html">
-              <i class="tim-icons icon-bell-55"></i>
-              <p>Inventario</p>
             </a>
           </li>
           <li>
@@ -205,7 +199,7 @@
                 </form>
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-fill btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-fill btn-primary" id="saveVentas">Guardar</button>
                 <button type="submit" class="btn btn-fill btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar</button>
               </div>
             </div>
