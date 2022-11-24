@@ -36,6 +36,39 @@
 </head>
 
 <body class="">
+  <!-- Inicio Modal -->
+  <div class="modal fade" id="prueba" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Editar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label>Nombre: </label>
+            <input type="text">
+          </div>
+          <div>
+            <label>Cantidad: </label>
+            <input type="text" name="" id="">
+          </div>
+          <div>
+            <label> precio: </label>
+            <input type="text" name="" id="">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fin Modal -->
   <div class="wrapper">
     <div class="sidebar">
       <!--
@@ -101,7 +134,8 @@
             </div>
             <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -127,7 +161,8 @@
           </div>
         </div>
       </nav>
-      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -145,7 +180,7 @@
           <div class="col-lg-6 col-md-12">
             <div class="card card-tasks">
               <div class="card-header ">
-                <h6 class="title d-inline">Productos</h6>
+                <h6 class="title d-inline">Inventario</h6>
                 <div class="dropdown">
                   <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown">
                     <i class="tim-icons icon-settings-gear-63"></i>
@@ -168,7 +203,8 @@
                           <p class="text">precio : 10</p>
                         </td>
                         <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                          <button type="button" rel="tooltip" title="" class="btn btn-link"
+                            data-original-title="Edit Task">
                             <i class="tim-icons icon-pencil"></i>
                           </button>
                         </td>
@@ -176,6 +212,12 @@
                     </tbody>
                   </table>
                 </div>
+              </div>
+              <div class="col-lg-6" id="dvIngreso">
+                <p class="text-left">Ingresos: </p>
+              </div>
+              <div class="col-lg-6" id="dvEgreso">
+                <p class="text-left"> Egresos: </p>
               </div>
             </div>
           </div>
@@ -203,7 +245,7 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody id="tbodyProviders" >
+                    <tbody id="tbodyProviders">
                     </tbody>
                   </table>
                 </div>
@@ -221,13 +263,15 @@
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <script src="../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+  <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script src="/assets/js/propio/demo.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="/assets/js/propio/EditInventario.js"></script>
+  <script src="https: //ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
-    $(document).ready(function() {
-      $().ready(function() {
+    $(document).ready(function () {
+      $().ready(function () {
         $sidebar = $('.sidebar');
         $navbar = $('.navbar');
         $main_panel = $('.main-panel');
@@ -244,7 +288,7 @@
 
 
 
-        $('.fixed-plugin a').click(function(event) {
+        $('.fixed-plugin a').click(function (event) {
           if ($(this).hasClass('switch-trigger')) {
             if (event.stopPropagation) {
               event.stopPropagation();
@@ -254,7 +298,7 @@
           }
         });
 
-        $('.fixed-plugin .background-color span').click(function() {
+        $('.fixed-plugin .background-color span').click(function () {
           $(this).siblings().removeClass('active');
           $(this).addClass('active');
 
@@ -277,7 +321,7 @@
           }
         });
 
-        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
           var $btn = $(this);
 
           if (sidebar_mini_active == true) {
@@ -291,23 +335,23 @@
           }
 
           // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
+          var simulateWindowResize = setInterval(function () {
             window.dispatchEvent(new Event('resize'));
           }, 180);
 
           // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
+          setTimeout(function () {
             clearInterval(simulateWindowResize);
           }, 1000);
         });
 
-        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
           var $btn = $(this);
 
           if (white_color == true) {
 
             $('body').addClass('change-background');
-            setTimeout(function() {
+            setTimeout(function () {
               $('body').removeClass('change-background');
               $('body').removeClass('white-content');
             }, 900);
@@ -315,7 +359,7 @@
           } else {
 
             $('body').addClass('change-background');
-            setTimeout(function() {
+            setTimeout(function () {
               $('body').removeClass('change-background');
               $('body').addClass('white-content');
             }, 900);
@@ -326,18 +370,18 @@
 
         });
 
-        $('.light-badge').click(function() {
+        $('.light-badge').click(function () {
           $('body').addClass('white-content');
         });
 
-        $('.dark-badge').click(function() {
+        $('.dark-badge').click(function () {
           $('body').removeClass('white-content');
         });
       });
     });
   </script>
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
       // Javascript method's body can be found in assets/js/demos.js
       demo.initDashboardPageCharts();
 
