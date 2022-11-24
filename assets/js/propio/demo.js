@@ -91,15 +91,23 @@ async function listar_productos(){
         }
     });
     const contenido = await resp.json();
+    let c = 0;
+    let c1 = 0;
     //console.log(contenido);
     file = "";
-    
+    p = "";
+    p2 = "";
     for(let i of contenido){
-        file += "<tr id=\""+i.id_inventario+"-prod\""+" ><td><p class=\"title\">"+i.producto.categoria+"</p><p class=\"text\">Cantidad : "+i.cantidad+"</p><p class=\"text\">precio : "+i.producto.precio_venta+"</p></td><td class=\"td-actions text-right\"><button type=\"button\" rel=\"tooltip\" title=\"\" class=\"btn btn-link\" data-original-title=\"Edit Task\"><i class=\"tim-icons icon-pencil\"></i></button></td></tr>"
-       
+        c += i.producto.precio_venta * i.cantidad;
+        c1 += i.total_egreso * i.cantidad;
+        file += "<tr id=\""+i.id_inventario+"\""+" ><td><p class=\"title\">"+i.producto.categoria+"</p><p class=\"text\">Cantidad : "+i.cantidad+"</p><p class=\"text\">precio : "+i.producto.precio_venta+"</p></td><td class=\"td-actions text-right\"><button type=\"button\" rel=\"tooltip\" title=\"\" class=\"btn btn-link\" data-original-title=\"Edit Task\" data-toggle=\"modal\" data-target=\"#prueba\"  id=\"hola\"><i class=\"tim-icons icon-pencil\"></i></button></td></tr>"
+        p = "<p class=\"text-left\"> Ingresos: " + c +" Bs</p>";
+        p2 = "<p class=\"text-left\"> Egresos: " + c1 +" Bs</p>";
     }
-    document.getElementById('tbodyProducts').innerHTML = file;
     
+    document.getElementById('tbodyProducts').innerHTML = file;
+    document.getElementById('dvIngreso').innerHTML = p;
+    document.getElementById("dvEgreso").innerHTML = p2;
 }
 
 async function litar_ProductosTable(){
