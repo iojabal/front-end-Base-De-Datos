@@ -8,6 +8,7 @@ $(document).ready(function (){
     listar_usuarios();
     listarUsuarios();
     listarProductosSelect();
+    listar_ventas();
 });
 
 async function listar_proveedores(){
@@ -97,7 +98,7 @@ async function listar_productos(){
         file += "<tr id=\""+i.id_inventario+"-prod\""+" ><td><p class=\"title\">"+i.producto.categoria+"</p><p class=\"text\">Cantidad : "+i.cantidad+"</p><p class=\"text\">precio : "+i.producto.precio_venta+"</p></td><td class=\"td-actions text-right\"><button type=\"button\" rel=\"tooltip\" title=\"\" class=\"btn btn-link\" data-original-title=\"Edit Task\"><i class=\"tim-icons icon-pencil\"></i></button></td></tr>"
        
     }
-    document.getElementById('tbodyProducts').outerHTML = file;
+    document.getElementById('tbodyProducts').innerHTML = file;
     
 }
 
@@ -132,4 +133,20 @@ async function listar_usuarios(){
         file += "<tr><td>" +i.nombre +"</td><td>"+i.ap_paterno+"</td><td>"+i.ap_materno +"</td><td class=\"text-center\">"+i.usuario+"</td></tr>"
     }
     document.getElementById("tbodyUsers").outerHTML = file;
+}
+
+async function listar_ventas(){
+    const resp = await fetch(url+"ventas", {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+    const con = await resp.json();
+    file = "";
+    for(let i of con){
+        file += "<tr><td>" +i.fecha_registro +"</td><td>"+i.user.nombre+ " " + i.user.ap_paterno+"</td><td>"+i.nro_prod.categoria +"</td></tr>"
+    }
+    document.querySelector("#tbodyVentas").innerHTML = file;
 }
